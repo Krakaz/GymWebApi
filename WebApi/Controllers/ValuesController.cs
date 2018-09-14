@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Common.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace gym_webapi_template.Controllers
@@ -10,6 +11,15 @@ namespace gym_webapi_template.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
+        private readonly ICustomLogger _customLogger;
+        private readonly ILogger _logger;
+
+        public ValuesController(ICustomLogger customLogger, ILogger logger)
+        {
+            this._customLogger = customLogger;
+            this._logger = logger;
+        }
+
         // GET api/values
         /// <summary>
         /// Получает список значений
@@ -17,6 +27,7 @@ namespace gym_webapi_template.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
+            this._customLogger.AddWarning("Логгируем, что хотим");
             return new string[] { "value1", "value2" };
         }
 
