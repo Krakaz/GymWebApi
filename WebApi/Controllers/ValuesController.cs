@@ -12,12 +12,10 @@ namespace gym_webapi_template.Controllers
     public class ValuesController : ControllerBase
     {
         private readonly ICustomLogger _customLogger;
-        private readonly ILogger _logger;
 
-        public ValuesController(ICustomLogger customLogger, ILogger logger)
+        public ValuesController(ICustomLogger customLogger)
         {
             this._customLogger = customLogger;
-            this._logger = logger;
         }
 
         // GET api/values
