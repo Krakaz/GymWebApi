@@ -19,13 +19,7 @@ namespace Common.Services.Implementation
             this.OnEvent += _fileLogger.LogEventAsync;
             this.OnEvent += logger.LogEventAsync;
         }
-
-        public void AddLogger(ILogger logger)
-        {
-            this.OnEvent += logger.LogEventAsync;
-        }
-
-        
+       
         public async Task AddWarningAsync(string Text)
         {
            await this.OnEvent(LogLevel.Warning, Text);

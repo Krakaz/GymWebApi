@@ -7,8 +7,6 @@ namespace Common.Services
     {
         Task AddWarningAsync(string Text);
 
-        void AddLogger(ILogger logger);
-
         Task AddErrorAsync(string Text, Exception ex);
     }
 }

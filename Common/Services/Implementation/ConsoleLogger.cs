@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.InteropServices;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 
@@ -18,6 +19,7 @@ namespace Common.Services.Implementation
         public Task LogEventAsync(LogLevel logLevel, string Text, Exception exception = null)
         {
             var color = Console.ForegroundColor;
+            Console.OutputEncoding = Encoding.UTF8;
             Console.WriteLine($"{DateTime.Now} [{logLevel.ToString()}] - {Text} - StackTrase:{exception?.StackTrace}");
             Console.ForegroundColor = color;
             return Task.CompletedTask;
