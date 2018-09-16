@@ -20,6 +20,7 @@ namespace DataLogicLayer.Services.Implementation
             {
                 logLevel = logLevel,
                 Text = Text,
+                EventDate = DateTime.Now,
                 StackTrace = exception?.StackTrace
             };
             db.Logs.Add(log);

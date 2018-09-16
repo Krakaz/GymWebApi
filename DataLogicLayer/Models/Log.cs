@@ -25,6 +25,11 @@ namespace DataLogicLayer.Models
         public LogLevel logLevel { get; set; }
 
         /// <summary>
+        /// Дата события
+        /// </summary>
+        public DateTime EventDate { get; set; }
+
+        /// <summary>
         /// Текст события
         /// </summary>
         public string Text { get; set; }
