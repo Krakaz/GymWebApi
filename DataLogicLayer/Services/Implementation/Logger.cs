@@ -9,10 +9,9 @@ namespace DataLogicLayer.Services.Implementation
     internal class Logger : Common.Services.ILogger
     {
         private LoggerContext db;
-        public Logger(LoggerContext context, ICustomLogger customLogger)
+        public Logger(LoggerContext context)
         {
             db = context;
-            customLogger.AddLogger(this);
         }
         public async Task LogEventAsync(LogLevel logLevel, string Text, Exception exception = null)
         {

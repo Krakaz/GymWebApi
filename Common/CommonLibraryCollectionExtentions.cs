@@ -9,7 +9,7 @@ namespace Common
     {
         public static IServiceCollection AddCommonLibraryCollection(this IServiceCollection services)
         {
-            services.AddSingleton<ICustomLogger, CustomLogger>();
+            services.AddScoped<ICustomLogger, CustomLogger>();
 
             return services;
         }

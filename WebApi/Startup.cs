@@ -23,11 +23,11 @@ namespace gym_webapi_template
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            
+
             services.AddCommonLibraryCollection();
             services.AddDataLibraryCollection();
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);            
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.AddSwaggerGen(options =>
             {

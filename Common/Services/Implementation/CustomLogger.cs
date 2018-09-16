@@ -13,10 +13,11 @@ namespace Common.Services.Implementation
         private event LogEvent OnEvent;
 
 
-        public CustomLogger()
+        public CustomLogger(ILogger logger)
         {
             this.OnEvent += _consoleLogger.LogEventAsync;
             this.OnEvent += _fileLogger.LogEventAsync;
+            this.OnEvent += logger.LogEventAsync;
         }
 
         public void AddLogger(ILogger logger)
@@ -25,14 +26,14 @@ namespace Common.Services.Implementation
         }
 
         
-        public void AddWarning(string Text)
+        public async Task AddWarningAsync(string Text)
         {
-            this.OnEvent(LogLevel.Warning, Text);
+           await this.OnEvent(LogLevel.Warning, Text);
         }
 
-        public void AddError(string Text, Exception ex)
+        public async Task AddErrorAsync(string Text, Exception ex)
         {
-            this.OnEvent(LogLevel.Error, Text, ex);
+            await this.OnEvent(LogLevel.Error, Text, ex);
         }
     }
 }
