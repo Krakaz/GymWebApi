@@ -6,9 +6,9 @@ namespace BusinessLogicLayer.Services.Implementation
 {
     internal class PromotionsBusinessService : IPromotionsBusinessService
     {
-        private readonly IPromotionService promotionServices;
+        private readonly IPromotionDataService promotionServices;
 
-        public PromotionsBusinessService(IPromotionService promotionServices)
+        public PromotionsBusinessService(IPromotionDataService promotionServices)
         {
             this.promotionServices = promotionServices;
         }

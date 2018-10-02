@@ -5,10 +5,10 @@ using DataLogicLayer.Models;
 
 namespace DataLogicLayer.Services.Implementation
 {
-    internal class PromotionService : IPromotionService
+    internal class PromotionDataService : IPromotionDataService
     {
         private ApplicationContext db;
-        public PromotionService(ApplicationContext context)
+        public PromotionDataService(ApplicationContext context)
         {
             db = context;
         }

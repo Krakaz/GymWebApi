@@ -3,7 +3,7 @@ using DataLogicLayer.Models;
 
 namespace DataLogicLayer.Services
 {
-    public interface IPromotionService
+    public interface IPromotionDataService
     {
         /// <summary>
         /// Получает список активных акций
