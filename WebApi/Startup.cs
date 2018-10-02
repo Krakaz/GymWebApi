@@ -25,7 +25,7 @@ namespace gym_webapi_template
         {
 
             services.AddCommonLibraryCollection();
-            // services.AddDataLibraryCollection();
+            services.AddDataLibraryCollection();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 

@@ -28,9 +28,9 @@ namespace WebApi.Controllers
         /// Получает списо акций
         /// </summary>
         [HttpGet]
-        public async Task<IEnumerable<Promotion>> GetAsync()
+        public IEnumerable<Promotion> GetAsync()
         {
-            return await this.promotions.GetActivePromotions();
+            return this.promotions.GetActivePromotions();
         }
     }
 }
