@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Common.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace gym_webapi_template.Controllers
@@ -10,13 +11,21 @@ namespace gym_webapi_template.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
+        private readonly ICustomLogger _customLogger;
+
+        public ValuesController(ICustomLogger customLogger)
+        {
+            this._customLogger = customLogger;
+        }
+
         // GET api/values
         /// <summary>
         /// Получает список значений
         /// </summary>
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public async Task<ActionResult<IEnumerable<string>>> GetAsync()
         {
+            await this._customLogger.AddWarningAsync("Получение списка занчений");
             return new string[] { "value1", "value2" };
         }
 
@@ -25,8 +34,9 @@ namespace gym_webapi_template.Controllers
         /// Получает значение по идентификатору
         /// </summary>
         [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        public async Task<ActionResult<string>> GetAsync(int id)
         {
+            await this._customLogger.AddWarningAsync("Получение занчения");
             return "value";
         }
 
@@ -35,8 +45,9 @@ namespace gym_webapi_template.Controllers
         /// Сохраняет значение
         /// </summary>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task PostAsync([FromBody] string value)
         {
+            await this._customLogger.AddWarningAsync("Добавление записи");
         }
 
         // PUT api/values/5
@@ -44,8 +55,9 @@ namespace gym_webapi_template.Controllers
         /// Изменяет значение
         /// </summary>
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public async Task PutAsync(int id, [FromBody] string value)
         {
+            await this._customLogger.AddWarningAsync("Изменяет занчение");
         }
 
         // DELETE api/values/5
@@ -53,8 +65,9 @@ namespace gym_webapi_template.Controllers
         /// Удаляет значение
         /// </summary>
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task DeleteAsync(int id)
         {
+            await this._customLogger.AddWarningAsync("Удаляет занчение");
         }
     }
 }
