@@ -1,13 +1,17 @@
 ﻿using System;
 using System.IO;
 using System.Reflection;
+using BusinessLogicLayer;
 using Common;
+using DataLogicLayer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.Swagger;
+using WebApi.Services;
+using WebApi.Services.Implementation;
 
 namespace gym_webapi_template
 {
@@ -23,9 +27,11 @@ namespace gym_webapi_template
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<IPromotionService, PromotionService>();
 
             services.AddCommonLibraryCollection();
-            services.AddDataLibraryCollection();
+            services.AddBusinessLibraryCollection();
+            services.AddDataLibraryCollection(Configuration);
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 

@@ -17,9 +17,9 @@ namespace WebApi.Controllers
     [ApiController]
     public class PromotionsController : ControllerBase
     {
-        private readonly IPromotionsService promotions;
+        private readonly IPromotionService promotions;
 
-        public PromotionsController(IPromotionsService promotions)
+        public PromotionsController(IPromotionService promotions)
         {
             this.promotions = promotions;
         }

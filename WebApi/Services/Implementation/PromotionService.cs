@@ -5,7 +5,7 @@ using WebApi.Models;
 
 namespace WebApi.Services.Implementation
 {
-    internal class PromotionService : IPromotionsService
+    internal class PromotionService : IPromotionService
     {
         private readonly IPromotionsBusinessService promotionsBusiness;
 

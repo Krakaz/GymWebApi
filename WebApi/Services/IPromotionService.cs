@@ -6,7 +6,7 @@ namespace WebApi.Services
     /// <summary>
     /// Интерфейс работы с акциями
     /// </summary>
-    public interface IPromotionsService
+    public interface IPromotionService
     {
         /// <summary>
         /// Получает список активных акций
