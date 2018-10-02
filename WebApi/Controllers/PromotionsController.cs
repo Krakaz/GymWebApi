@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using WebApi.Models;
+using WebApi.Services;
 
 namespace WebApi.Controllers
 {
@@ -15,14 +17,20 @@ namespace WebApi.Controllers
     [ApiController]
     public class PromotionsController : ControllerBase
     {
+        private readonly IPromotions promotions;
+
+        public PromotionsController(IPromotions promotions)
+        {
+            this.promotions = promotions;
+        }
         // GET api/promotions
         /// <summary>
         /// Получает списо акций
         /// </summary>
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public async Task<IEnumerable<Promotion>> GetAsync()
         {
-            return new string[] { "value1", "value2" };
+            return await this.promotions.GetActivePromotions();
         }
     }
 }
