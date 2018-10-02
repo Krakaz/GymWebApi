@@ -13,8 +13,10 @@ namespace Common
             services.AddScoped<ILogger, Logger>();
 
             var defaultConnection = "Server=localhost;Database=logs;Trusted_Connection=True;MultipleActiveResultSets=true";
+            var defaultConnectionApi = "Server=localhost;Database=GYMDB;Trusted_Connection=True;MultipleActiveResultSets=true";
             services.AddDbContext<LoggerContext>(options => options.UseSqlServer(defaultConnection));
-            
+            services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(defaultConnectionApi));
+
             return services;
         }
     }

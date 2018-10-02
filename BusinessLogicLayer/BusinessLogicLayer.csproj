@@ -9,4 +9,12 @@
     <PackageReference Include="Microsoft.AspNetCore.App" Version="2.1.5" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DataLogicLayer\DataLogicLayer.csproj" />
+  </ItemGroup>
+
 </Project>
