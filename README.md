@@ -1,3 +1,5 @@
+[![Build Status](https://krakaz238-gmail.visualstudio.com/GymWebApi/_apis/build/status/Krakaz.GymWebApi)](https://krakaz238-gmail.visualstudio.com/GymWebApi/_build/latest?definitionId=1)
+
 Разработка приложения для тренажерного зала
 #web
 Необходимо разработать приложение для тренажерного зала со следующим функционалом. На стартовой странице будет расположены раздела, с возможностью менять порядок отображения. Список разделов:
