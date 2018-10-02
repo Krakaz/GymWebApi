@@ -12,11 +12,11 @@ namespace DataLogicLayer
     {
         public static IServiceCollection AddDataLibraryCollection(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddScoped<ILogger, Logger>();
-            services.AddSingleton<IPromotionDataService, PromotionDataService>();
-
             services.AddDbContext<LoggerContext>(options => options.UseSqlServer(configuration.GetConnectionString("LogConnection")));
             services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(configuration.GetConnectionString("ApplicationConnection")));
+
+            services.AddScoped<ILogger, Logger>();
+            services.AddScoped<IPromotionDataService, PromotionDataService>();
 
             return services;
         }
