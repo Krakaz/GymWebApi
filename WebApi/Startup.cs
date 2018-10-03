@@ -9,7 +9,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Swashbuckle.AspNetCore.Filters;
 using Swashbuckle.AspNetCore.Swagger;
+using WebApi;
 using WebApi.Services;
 using WebApi.Services.Implementation;
 
@@ -37,11 +39,13 @@ namespace gym_webapi_template
 
             services.AddSwaggerGen(options =>
             {
+                
                 options.SwaggerDoc("v1", new Info { Title = "Gym Web API", Version = "v1" });
-
+                options.OperationFilter<FormFileSwaggerFilter>();
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 options.IncludeXmlComments(xmlPath);
+                options.DescribeAllEnumsAsStrings();                
             });
         }
 

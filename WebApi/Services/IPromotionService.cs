@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using WebApi.Models;
 
 namespace WebApi.Services
@@ -12,5 +14,12 @@ namespace WebApi.Services
         /// Получает список активных акций
         /// </summary>
         IEnumerable<Promotion> GetActivePromotions();
+
+
+        /// <summary>
+        /// Добавляет новую акцию
+        /// </summary>
+        /// <param name="promotion">Акция</param>
+        Task CreatePromotionAsync(PromotionInsert promotion, IFormFile file);
     }
 }

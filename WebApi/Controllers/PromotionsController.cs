@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -23,6 +21,7 @@ namespace WebApi.Controllers
         {
             this.promotions = promotions;
         }
+
         // GET api/promotions
         /// <summary>
         /// Получает списо акций
@@ -31,6 +30,16 @@ namespace WebApi.Controllers
         public IEnumerable<Promotion> GetAsync()
         {
             return this.promotions.GetActivePromotions();
+        }
+
+        // POST api/promotions
+        /// <summary>
+        /// Сохраняет новую акцию
+        /// </summary>
+        [HttpPost]
+        public Task PostAsync([FromBody] PromotionInsert promotion, [FromForm]IFormFile file)
+        {
+            return this.promotions.CreatePromotionAsync(promotion, file);
         }
     }
 }

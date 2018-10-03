@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using DataLogicLayer.Models;
 
 namespace DataLogicLayer.Services.Implementation
@@ -12,6 +13,13 @@ namespace DataLogicLayer.Services.Implementation
         {
             db = context;
         }
+
+        public async Task CreatePromotionAsync(PromotionDTO promotion)
+        {
+            this.db.Promotions.Add(promotion);
+            await this.db.SaveChangesAsync();
+        }
+
         public IList<PromotionDTO> GetActivePromotions()
         {
             var currentDt = DateTime.UtcNow;

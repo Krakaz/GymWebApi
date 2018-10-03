@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using DataLogicLayer.Models;
 
 namespace DataLogicLayer.Services
@@ -9,5 +10,12 @@ namespace DataLogicLayer.Services
         /// Получает список активных акций
         /// </summary>
         IList<PromotionDTO> GetActivePromotions();
+
+
+        /// <summary>
+        /// Добавляет новую акцию
+        /// </summary>
+        /// <param name="promotion">Акция</param>
+        Task CreatePromotionAsync(PromotionDTO promotion);
     }
 }

@@ -1,6 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using BusinessLogicLayer.Models;
 using BusinessLogicLayer.Services;
 using Mapster;
+using Microsoft.AspNetCore.Http;
 using WebApi.Models;
 
 namespace WebApi.Services.Implementation
@@ -13,6 +16,14 @@ namespace WebApi.Services.Implementation
         {
             this.promotionsBusiness = promotionsBusiness;
         }
+
+        public async Task CreatePromotionAsync(PromotionInsert promotion, IFormFile file)
+        {
+            var basePromotion = promotion.Adapt<PromotionBase>();
+            basePromotion.Image = file;
+            await this.promotionsBusiness.CreatePromotionAsync(basePromotion);
+        }
+
         public IEnumerable<Promotion> GetActivePromotions()
         {
             return this.promotionsBusiness.GetActivePromotions().Adapt<IEnumerable<Promotion>>();
