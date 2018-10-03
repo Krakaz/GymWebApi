@@ -33,5 +33,10 @@ namespace DataLogicLayer.Models
         /// Дата окончания действия акции
         /// </summary>
         public DateTime? DtTo { get; set; }
+
+        /// <summary>
+        /// Признак удаления
+        /// </summary>
+        public bool IsDeleted { get; set; }
     }
 }
