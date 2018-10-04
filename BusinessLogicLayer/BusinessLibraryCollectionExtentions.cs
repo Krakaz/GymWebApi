@@ -9,6 +9,8 @@ namespace BusinessLogicLayer
         public static IServiceCollection AddBusinessLibraryCollection(this IServiceCollection services)
         {
             services.AddScoped<IPromotionsBusinessService, PromotionsBusinessService>();
+            services.AddScoped<IFileBusinessService, FileBusinessService>();
+
 
             return services;
         }

@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.IO;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 
 namespace BusinessLogicLayer.Services
@@ -12,5 +13,10 @@ namespace BusinessLogicLayer.Services
         /// Сохраняет файл на диск
         /// </summary>
         Task<string> SaveFileAsync(IFormFile file);
+
+        /// <summary>
+        /// Получает файл
+        /// </summary>
+        Task<MemoryStream> GetFileAsync(string fileName);
     }
 }

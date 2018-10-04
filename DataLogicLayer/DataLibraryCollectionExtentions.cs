@@ -16,6 +16,7 @@ namespace DataLogicLayer
 
             services.AddScoped<ILogger, Logger>();
             services.AddScoped<IPromotionDataService, PromotionDataService>();
+            services.AddScoped<IFileDataService, FileDataService>();
 
             return services;
         }

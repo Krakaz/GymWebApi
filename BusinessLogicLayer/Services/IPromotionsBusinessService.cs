@@ -13,7 +13,7 @@ namespace BusinessLogicLayer.Services
         /// <summary>
         /// Получает список активных акций
         /// </summary>
-        IList<PromotionDto> GetActivePromotions();
+        IList<PromotionListItem> GetActivePromotions();
 
 
         /// <summary>
@@ -21,5 +21,11 @@ namespace BusinessLogicLayer.Services
         /// </summary>
         /// <param name="promotion">Акция</param>
         Task CreatePromotionAsync(PromotionBase promotion);
+
+        /// <summary>
+        /// Получает детализацию акции
+        /// </summary>
+        /// <param name="id">Идентификатор акции</param>
+        Task<PromotionBaseDetails> GetPromotionAsync(int id);
     }
 }

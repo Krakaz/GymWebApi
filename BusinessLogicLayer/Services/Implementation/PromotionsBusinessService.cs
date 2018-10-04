@@ -42,9 +42,25 @@ namespace BusinessLogicLayer.Services.Implementation
             await this.promotionServices.CreatePromotionAsync(promotionDto);
         }
 
-        public IList<PromotionDto> GetActivePromotions()
+        public IList<PromotionListItem> GetActivePromotions()
         {
-            return this.promotionServices.GetActivePromotions();
+            var promotionDto = this.promotionServices.GetActivePromotions();
+            var promotions = new List<PromotionListItem>();
+            foreach (var el in promotionDto)
+            {
+                var promotion = el.Adapt<PromotionListItem>();
+                promotion.ImageName = el.File.Label;
+                promotions.Add(promotion);
+            }
+            return promotions;
+        }
+
+        public async Task<PromotionBaseDetails> GetPromotionAsync(int id)
+        {
+            var promotionDto = await this.promotionServices.GetPromotionAsync(id);
+            var promotion = promotionDto.Adapt<PromotionBaseDetails>();
+            promotion.Image = (await this.fileBusinessService.GetFileAsync(promotionDto.File.Name)).ToArray();
+            return promotion;
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DataLogicLayer.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace DataLogicLayer.Services.Implementation
 {
@@ -24,12 +25,20 @@ namespace DataLogicLayer.Services.Implementation
         {
             var currentDt = DateTime.UtcNow;
             return this.db.Promotions.Where(el =>
-                el.IsDeleted == true &&
+                el.IsDeleted == false &&
                 el.DtFrom <= currentDt &&
                 (!el.DtTo.HasValue || el.DtTo >= currentDt))
+                .Include(promotion => promotion.File)
                 .AsParallel()
-                .OrderByDescending(r => r.DtFrom)
+                .OrderByDescending(r => r.DtFrom)                
                 .ToList();
+        }
+
+        public Task<PromotionDto> GetPromotionAsync(int id)
+        {
+            return this.db.Promotions
+                .Include(promotion => promotion.File)
+                .SingleOrDefaultAsync(el => el.Id == id);
         }
     }
 }

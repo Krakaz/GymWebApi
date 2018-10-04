@@ -27,5 +27,12 @@ namespace WebApi.Services.Implementation
         {
             return this.promotionsBusiness.GetActivePromotions().Adapt<IEnumerable<Promotion>>();
         }
+
+        public async Task<PromotionDetails> GetPromotionAsync(int id)
+        {
+            var promotionBase = await this.promotionsBusiness.GetPromotionAsync(id);
+            var promotionDetails = promotionBase.Adapt<PromotionDetails>();
+            return promotionDetails;
+        }
     }
 }

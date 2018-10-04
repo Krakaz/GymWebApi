@@ -17,5 +17,11 @@ namespace DataLogicLayer.Services
         /// </summary>
         /// <param name="promotion">Акция</param>
         Task CreatePromotionAsync(PromotionDto promotion);
+
+        /// <summary>
+        /// Получает детализацию акции
+        /// </summary>
+        /// <param name="id">Идентификатор акции</param>
+        Task<PromotionDto> GetPromotionAsync(int id);
     }
 }

@@ -32,6 +32,16 @@ namespace WebApi.Controllers
             return this.promotions.GetActivePromotions();
         }
 
+        // GET api/promotions/5
+        /// <summary>
+        /// Получает списо акций
+        /// </summary>
+        [HttpGet("{id}")]
+        public Task<PromotionDetails> GetAsync(int id)
+        {
+            return this.promotions.GetPromotionAsync(id);
+        }
+
         // POST api/promotions
         /// <summary>
         /// Сохраняет новую акцию

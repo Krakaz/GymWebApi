@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.IO;
 using System.Runtime.Serialization;
 
 namespace WebApi.Models
@@ -7,7 +9,7 @@ namespace WebApi.Models
     /// Акция
     /// </summary>
     [DataContract]
-    public class Promotion
+    public class PromotionDetails
     {
         /// <summary>
         /// Идентификатор акции
@@ -31,10 +33,22 @@ namespace WebApi.Models
         public string Description { get; set; }
 
         /// <summary>
-        /// Ссылка на картинку
+        /// Дата начала действия акции
         /// </summary>
-        [DataMember(Name = "imageName")]
+        [DataMember(Name = "dtFrom")]
         [Required]
-        public string ImageName { get; set; }
+        public DateTime DtFrom { get; set; }
+
+        /// <summary>
+        /// Дата окончания действия акции
+        /// </summary>
+        [DataMember(Name = "dtTo")]
+        public DateTime? DtTo { get; set; }
+
+        /// <summary>
+        /// Картинка
+        /// </summary>
+        [DataMember(Name = "image")]
+        public byte[] Image { get; set; }
     }
 }
