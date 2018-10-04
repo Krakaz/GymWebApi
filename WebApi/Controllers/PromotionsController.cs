@@ -39,7 +39,7 @@ namespace WebApi.Controllers
         [HttpPost]
         public Task PostAsync([FromForm] PromotionInsert promotion)
         {
-            return this.promotions.CreatePromotionAsync(promotion, promotion.Image);
+            return this.promotions.CreatePromotionAsync(promotion);
         }
     }
 }

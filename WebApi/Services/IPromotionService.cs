@@ -20,6 +20,6 @@ namespace WebApi.Services
         /// Добавляет новую акцию
         /// </summary>
         /// <param name="promotion">Акция</param>
-        Task CreatePromotionAsync(PromotionInsert promotion, IFormFile file);
+        Task CreatePromotionAsync(PromotionInsert promotion);
     }
 }

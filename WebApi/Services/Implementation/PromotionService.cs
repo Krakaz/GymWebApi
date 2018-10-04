@@ -17,10 +17,9 @@ namespace WebApi.Services.Implementation
             this.promotionsBusiness = promotionsBusiness;
         }
 
-        public async Task CreatePromotionAsync(PromotionInsert promotion, IFormFile file)
+        public async Task CreatePromotionAsync(PromotionInsert promotion)
         {
             var basePromotion = promotion.Adapt<PromotionBase>();
-            basePromotion.Image = file;
             await this.promotionsBusiness.CreatePromotionAsync(basePromotion);
         }
 
