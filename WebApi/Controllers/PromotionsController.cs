@@ -37,9 +37,9 @@ namespace WebApi.Controllers
         /// Сохраняет новую акцию
         /// </summary>
         [HttpPost]
-        public Task PostAsync([FromBody] PromotionInsert promotion, [FromForm]IFormFile file)
+        public Task PostAsync([FromForm] PromotionInsert promotion)
         {
-            return this.promotions.CreatePromotionAsync(promotion, file);
+            return this.promotions.CreatePromotionAsync(promotion, promotion.Image);
         }
     }
 }

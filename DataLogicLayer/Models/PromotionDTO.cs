@@ -2,7 +2,10 @@
 
 namespace DataLogicLayer.Models
 {
-    public class PromotionDTO
+    /// <summary>
+    /// Акция
+    /// </summary>
+    public class PromotionDto
     {
         /// <summary>
         /// Идентификатор акции
@@ -22,7 +25,12 @@ namespace DataLogicLayer.Models
         /// <summary>
         /// Ссылка на картинку
         /// </summary>
-        public string ImageUrl { get; set; }
+        public int FileId { get; set; }
+
+        /// <summary>
+        /// Картинка
+        /// </summary>
+        public FileDto File { get; set; }
 
         /// <summary>
         /// Дата начала действия акции

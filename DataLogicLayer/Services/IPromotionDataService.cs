@@ -9,13 +9,13 @@ namespace DataLogicLayer.Services
         /// <summary>
         /// Получает список активных акций
         /// </summary>
-        IList<PromotionDTO> GetActivePromotions();
+        IList<PromotionDto> GetActivePromotions();
 
 
         /// <summary>
         /// Добавляет новую акцию
         /// </summary>
         /// <param name="promotion">Акция</param>
-        Task CreatePromotionAsync(PromotionDTO promotion);
+        Task CreatePromotionAsync(PromotionDto promotion);
     }
 }

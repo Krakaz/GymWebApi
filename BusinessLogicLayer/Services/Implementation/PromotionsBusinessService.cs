@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using BusinessLogicLayer.Models;
 using DataLogicLayer.Models;
@@ -12,37 +10,39 @@ namespace BusinessLogicLayer.Services.Implementation
     internal class PromotionsBusinessService : IPromotionsBusinessService
     {
         private readonly IPromotionDataService promotionServices;
-        private readonly string promotionImagePath = "wwwroot/promotionImages/";
+        private readonly IFileBusinessService fileBusinessService;
+        private readonly IFileDataService fileDataService;
 
-        public PromotionsBusinessService(IPromotionDataService promotionServices)
+        public PromotionsBusinessService(IPromotionDataService promotionServices,
+            IFileBusinessService fileBusinessService,
+            IFileDataService fileDataService)
         {
             this.promotionServices = promotionServices;
+            this.fileBusinessService = fileBusinessService;
+            this.fileDataService = fileDataService;
         }
 
         public async Task CreatePromotionAsync(PromotionBase promotion)
         {
-            if (promotion.Image == null || promotion.Image.Length == 0)
+            var fileName = await this.fileBusinessService.SaveFileAsync(promotion.Image);
+            var file = new FileDto()
             {
-                throw new ArgumentNullException("Изображение не выбрано");
-            }
+                Name = fileName,
+                ContentType = promotion.Image.ContentType,
+                Label = promotion.Image.FileName
+            };
 
-            var path = Path.Combine(
-                        Directory.GetCurrentDirectory(), promotionImagePath,
-                        promotion.Image.FileName);
+            file.Id = await this.fileDataService.SaveFileAsync(file);
 
-            using (var stream = new FileStream(path, FileMode.Create))
-            {
-                await promotion.Image.CopyToAsync(stream);
-            }
 
-            var promotionDto = promotion.Adapt<PromotionDTO>();
-            promotionDto.ImageUrl = Path.Combine(promotionImagePath,
-                        promotion.Image.FileName);
+            var promotionDto = promotion.Adapt<PromotionDto>();
+            promotionDto.FileId = file.Id;
+            promotionDto.File = file;
             promotionDto.IsDeleted = false;
             await this.promotionServices.CreatePromotionAsync(promotionDto);
         }
 
-        public IList<PromotionDTO> GetActivePromotions()
+        public IList<PromotionDto> GetActivePromotions()
         {
             return this.promotionServices.GetActivePromotions();
         }

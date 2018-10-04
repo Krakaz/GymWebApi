@@ -37,5 +37,11 @@ namespace WebApi.Models
         /// </summary>
         [DataMember(Name = "dtTo")]
         public DateTime? DtTo { get; set; }
+
+        /// <summary>
+        /// Картинка
+        /// </summary>
+        [DataMember(Name = "image")]
+        public IFormFile Image { get; set; }
     }
 }

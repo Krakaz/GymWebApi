@@ -11,7 +11,8 @@ namespace DataLogicLayer
         { }
 
 
-        public DbSet<PromotionDTO> Promotions { get; set; }
+        public DbSet<PromotionDto> Promotions { get; set; }
+        public DbSet<FileDto> Files { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

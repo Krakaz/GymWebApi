@@ -14,18 +14,19 @@ namespace DataLogicLayer.Services.Implementation
             db = context;
         }
 
-        public async Task CreatePromotionAsync(PromotionDTO promotion)
+        public async Task CreatePromotionAsync(PromotionDto promotion)
         {
             this.db.Promotions.Add(promotion);
             await this.db.SaveChangesAsync();
         }
 
-        public IList<PromotionDTO> GetActivePromotions()
+        public IList<PromotionDto> GetActivePromotions()
         {
             var currentDt = DateTime.UtcNow;
             return this.db.Promotions.Where(el =>
-                el.DtFrom >= currentDt &&
-                (!el.DtTo.HasValue || el.DtTo <= currentDt))
+                el.IsDeleted == true &&
+                el.DtFrom <= currentDt &&
+                (!el.DtTo.HasValue || el.DtTo >= currentDt))
                 .AsParallel()
                 .OrderByDescending(r => r.DtFrom)
                 .ToList();
