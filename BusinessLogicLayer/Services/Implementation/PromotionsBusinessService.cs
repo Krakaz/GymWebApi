@@ -42,9 +42,9 @@ namespace BusinessLogicLayer.Services.Implementation
             await this.promotionServices.CreatePromotionAsync(promotionDto);
         }
 
-        public IList<PromotionListItem> GetActivePromotions()
+        public async Task<IList<PromotionListItem>> GetActivePromotionsAsync()
         {
-            var promotionDto = this.promotionServices.GetActivePromotions();
+            var promotionDto = await this.promotionServices.GetActivePromotionsAsync();
             var promotions = new List<PromotionListItem>();
             foreach (var el in promotionDto)
             {

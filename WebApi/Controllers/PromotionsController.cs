@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Models;
 using WebApi.Services;
@@ -11,9 +9,9 @@ namespace WebApi.Controllers
     /// <summary>
     /// Контроллер для работы с акциями
     /// </summary>
-    [Route("api/[controller]")]
-    [ApiController]
-    public class PromotionsController : ControllerBase
+    // [Route("api/[controller]")]
+    // [ApiController]
+    public class PromotionsController : Controller
     {
         private readonly IPromotionService promotions;
 
@@ -26,20 +24,20 @@ namespace WebApi.Controllers
         /// <summary>
         /// Получает списо акций
         /// </summary>
-        [HttpGet]
-        public IEnumerable<Promotion> GetAsync()
+        [HttpGet("[controller]")]
+        public async Task<IActionResult> IndexAsync()
         {
-            return this.promotions.GetActivePromotions();
+            return View("index",await this.promotions.GetActivePromotionsAsync());
         }
 
         // GET api/promotions/5
         /// <summary>
         /// Получает списо акций
         /// </summary>
-        [HttpGet("{id}")]
-        public Task<PromotionDetails> GetAsync(int id)
+        [HttpGet("[controller]/{id:int}")]
+        public async Task<IActionResult> DetailsAsync(int id)
         {
-            return this.promotions.GetPromotionAsync(id);
+            return View(await this.promotions.GetPromotionAsync(id));
         }
 
         // POST api/promotions
@@ -47,9 +45,12 @@ namespace WebApi.Controllers
         /// Сохраняет новую акцию
         /// </summary>
         [HttpPost]
-        public Task PostAsync([FromForm] PromotionInsert promotion)
+        public async Task<IActionResult> EditAsync([FromForm] PromotionInsert promotion)
         {
-            return this.promotions.CreatePromotionAsync(promotion);
+            var id = await this.promotions.CreatePromotionAsync(promotion);
+            return RedirectToAction($"details/{id}");
         }
+
+
     }
 }

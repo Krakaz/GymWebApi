@@ -13,14 +13,14 @@ namespace WebApi.Services
         /// <summary>
         /// Получает список активных акций
         /// </summary>
-        IEnumerable<Promotion> GetActivePromotions();
+        Task<IEnumerable<Promotion>> GetActivePromotionsAsync();
 
 
         /// <summary>
         /// Добавляет новую акцию
         /// </summary>
         /// <param name="promotion">Акция</param>
-        Task CreatePromotionAsync(PromotionInsert promotion);
+        Task<int> CreatePromotionAsync(PromotionInsert promotion);
 
         /// <summary>
         /// Получает детализацию акции

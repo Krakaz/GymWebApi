@@ -9,7 +9,7 @@ namespace DataLogicLayer.Services
         /// <summary>
         /// Получает список активных акций
         /// </summary>
-        IList<PromotionDto> GetActivePromotions();
+        Task<IList<PromotionDto>> GetActivePromotionsAsync();
 
 
         /// <summary>

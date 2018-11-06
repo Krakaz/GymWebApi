@@ -16,9 +16,12 @@ namespace BusinessLogicLayer.Services.Implementation
                            filePath, fileName);
 
             var memory = new MemoryStream();
-            using (var stream = new FileStream(path, FileMode.Open))
+            if (File.Exists(path))
             {
-                await stream.CopyToAsync(memory);
+                using (var stream = new FileStream(path, FileMode.Open))
+                {
+                    await stream.CopyToAsync(memory);
+                }
             }
             memory.Position = 0;
             return memory;

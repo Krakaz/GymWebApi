@@ -21,17 +21,16 @@ namespace DataLogicLayer.Services.Implementation
             await this.db.SaveChangesAsync();
         }
 
-        public IList<PromotionDto> GetActivePromotions()
+        public async Task<IList<PromotionDto>> GetActivePromotionsAsync()
         {
             var currentDt = DateTime.UtcNow;
-            return this.db.Promotions.Where(el =>
+            return await this.db.Promotions.Where(el =>
                 el.IsDeleted == false &&
                 el.DtFrom <= currentDt &&
                 (!el.DtTo.HasValue || el.DtTo >= currentDt))
                 .Include(promotion => promotion.File)
-                .AsParallel()
                 .OrderByDescending(r => r.DtFrom)                
-                .ToList();
+                .ToListAsync();
         }
 
         public Task<PromotionDto> GetPromotionAsync(int id)

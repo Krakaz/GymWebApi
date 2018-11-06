@@ -13,7 +13,7 @@ namespace BusinessLogicLayer.Services
         /// <summary>
         /// Получает список активных акций
         /// </summary>
-        IList<PromotionListItem> GetActivePromotions();
+        Task<IList<PromotionListItem>> GetActivePromotionsAsync();
 
 
         /// <summary>

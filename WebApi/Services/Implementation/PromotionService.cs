@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using BusinessLogicLayer.Models;
 using BusinessLogicLayer.Services;
 using Mapster;
-using Microsoft.AspNetCore.Http;
 using WebApi.Models;
 
 namespace WebApi.Services.Implementation
@@ -17,15 +16,16 @@ namespace WebApi.Services.Implementation
             this.promotionsBusiness = promotionsBusiness;
         }
 
-        public async Task CreatePromotionAsync(PromotionInsert promotion)
+        public async Task<int> CreatePromotionAsync(PromotionInsert promotion)
         {
             var basePromotion = promotion.Adapt<PromotionBase>();
             await this.promotionsBusiness.CreatePromotionAsync(basePromotion);
+            return basePromotion.Id;
         }
 
-        public IEnumerable<Promotion> GetActivePromotions()
+        public async Task<IEnumerable<Promotion>> GetActivePromotionsAsync()
         {
-            return this.promotionsBusiness.GetActivePromotions().Adapt<IEnumerable<Promotion>>();
+            return (await this.promotionsBusiness.GetActivePromotionsAsync()).Adapt<IEnumerable<Promotion>>();
         }
 
         public async Task<PromotionDetails> GetPromotionAsync(int id)

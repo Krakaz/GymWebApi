@@ -67,7 +67,12 @@ namespace gym_webapi_template
             });
 
             app.UseHttpsRedirection();
-            app.UseMvc();
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Promotions}/{action=Index}/{id?}");
+            });
         }
     }
 }
