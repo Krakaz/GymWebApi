@@ -10,7 +10,7 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
+- script: SonarScanner.MSBuild.exe end /d:sonar.login="908c2828ba4b8f880ff280677f96fc59480265e1"
+  displayName: 'SonarScanner'
 - script: dotnet build --configuration $(buildConfiguration)
   displayName: 'dotnet build $(buildConfiguration)'
-- script: SonarScanner.MSBuild.exe begin /k:"Krakaz_GymWebApi" /d:sonar.organization="krakaz-github" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.login="908c2828ba4b8f880ff280677f96fc59480265e1"
-  displayName: 'SonarScanner'
