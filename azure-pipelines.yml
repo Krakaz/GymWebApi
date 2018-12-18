@@ -10,5 +10,9 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
+- script: dotnet tool install --global dotnet-sonarscanner
+- script: SonarScanner.MSBuild.exe begin /k:"org.sonarqube:sonar-scanner-msbuild" /n:"Project Name" /v:"1.0"
+- script: MSBuild.exe /t:Rebuild
+- script: SonarScanner.MSBuild.exe end
 - script: dotnet build --configuration $(buildConfiguration)
   displayName: 'dotnet build $(buildConfiguration)'
