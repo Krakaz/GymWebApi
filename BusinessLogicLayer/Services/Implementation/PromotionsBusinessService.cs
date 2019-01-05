@@ -43,6 +43,11 @@ namespace BusinessLogicLayer.Services.Implementation
             promotion.Id = promotionDto.Id;
         }
 
+        public Task DeletePromotionAsync(int id)
+        {
+            return this.promotionServices.DeleteAsync(id);
+        }
+
         public async Task<IList<PromotionListItem>> GetActivePromotionsAsync()
         {
             var promotionDto = await this.promotionServices.GetActivePromotionsAsync();

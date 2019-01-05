@@ -90,5 +90,15 @@ namespace WebApi.Controllers
                 return View(promotion);
         }
 
+        /// <summary>
+        /// Редактирует акцию
+        /// </summary>
+        [HttpPost("Delete")]
+        public async Task<IActionResult> DeleteAsync(int Id)
+        {
+            await this.promotions.DeletePromotionAsync(Id);
+            return RedirectToAction($"IndexAsync", null);
+        }
+
     }
 }

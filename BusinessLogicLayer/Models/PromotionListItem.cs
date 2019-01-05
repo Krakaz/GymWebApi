@@ -1,4 +1,6 @@
-﻿namespace BusinessLogicLayer.Models
+﻿using System;
+
+namespace BusinessLogicLayer.Models
 {
     /// <summary>
     /// Акция
@@ -24,5 +26,15 @@
         /// Ссылка на картинку
         /// </summary>
         public string ImageName { get; set; }
+
+        /// <summary>
+        /// Дата начала действия акции
+        /// </summary>
+        public DateTime DtFrom { get; set; }
+
+        /// <summary>
+        /// Дата окончания действия акции
+        /// </summary>
+        public DateTime? DtTo { get; set; }
     }
 }

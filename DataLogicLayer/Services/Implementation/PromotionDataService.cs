@@ -21,6 +21,13 @@ namespace DataLogicLayer.Services.Implementation
             await this.db.SaveChangesAsync();
         }
 
+        public Task DeleteAsync(int id)
+        {
+            var promoution = this.db.Promotions.First(el => el.Id == id);
+            promoution.IsDeleted = true;
+            return this.db.SaveChangesAsync();
+        }
+
         public async Task<IList<PromotionDto>> GetActivePromotionsAsync()
         {
             var currentDt = DateTime.UtcNow;

@@ -23,5 +23,12 @@ namespace DataLogicLayer.Services
         /// </summary>
         /// <param name="id">Идентификатор акции</param>
         Task<PromotionDto> GetPromotionAsync(int id);
+
+        /// <summary>
+        /// Удаление акции из БД
+        /// </summary>
+        /// <param name="id">Идентификатор акции</param>
+        /// <param name="id">Идентификатор акции</param>
+        Task DeleteAsync(int id);
     }
 }

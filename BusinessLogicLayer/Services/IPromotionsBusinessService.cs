@@ -27,5 +27,11 @@ namespace BusinessLogicLayer.Services
         /// </summary>
         /// <param name="id">Идентификатор акции</param>
         Task<PromotionBaseDetails> GetPromotionAsync(int id);
+
+        /// <summary>
+        /// Удаление акции
+        /// </summary>
+        /// <param name="id">Идентификатор акции</param>
+        Task DeletePromotionAsync(int id);
     }
 }

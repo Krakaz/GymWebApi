@@ -3,7 +3,6 @@
 @{
     ViewData["Title"] = "Список акций";
 }
-
 <h2>Список акций</h2>
 
 <table class="table-condensed">
@@ -19,7 +18,10 @@
                 @Html.DisplayNameFor(model => model.Description)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ImageName)
+                @Html.DisplayNameFor(model => model.DtFrom)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DtTo)
             </th>
             <th></th>
         </tr>
@@ -27,6 +29,9 @@
     <tbody>
         @foreach (var item in Model)
         {
+            var dtStart = item.DtFrom.ToString("dd.MM.yyyy");
+            var dtEnd = item.DtTo?.ToString("dd.MM.yyyy") ?? "не ограничено";
+
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.Id)
@@ -38,12 +43,24 @@
                     @Html.DisplayFor(modelItem => item.Description)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ImageName)
+                    @dtStart
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                    @Html.ActionLink("Details", "DetailsAsync", new { id = item.Id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    @dtEnd
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.ImageName)
+                    </td>*@
+                <td>
+                    <div>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-warning" })
+                        @Html.ActionLink("Details", "DetailsAsync", new { id = item.Id }, new { @class = "btn btn-success" })
+                        @*@Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger", id = "#hl-delete-promotion" })*@
+                        <form method="post" asp-controller="Promotions" asp-action="Delete" style="display: inline">
+                            <input type="hidden" name="id" value=@item.Id />
+                            <input class="btn btn-danger" type="submit" value="Delete" />
+                        </form>
+                    </div>
                 </td>
             </tr>
         }

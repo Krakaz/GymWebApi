@@ -34,5 +34,10 @@ namespace WebApi.Services.Implementation
             var promotionDetails = promotionBase.Adapt<PromotionDetails>();
             return promotionDetails;
         }
+
+        public Task DeletePromotionAsync(int id)
+        {
+            return this.promotionsBusiness.DeletePromotionAsync(id);
+        }
     }
 }
