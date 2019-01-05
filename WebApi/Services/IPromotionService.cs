@@ -20,7 +20,7 @@ namespace WebApi.Services
         /// Добавляет новую акцию
         /// </summary>
         /// <param name="promotion">Акция</param>
-        Task<int> CreatePromotionAsync(PromotionInsert promotion);
+        Task<int> CreatePromotionAsync(PromotionUpsert promotion);
 
         /// <summary>
         /// Получает детализацию акции

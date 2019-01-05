@@ -1,0 +1,40 @@
+﻿@model WebApi.Models.PromotionUpsert
+@{
+    ViewData["Title"] = "Создание акции";
+}
+
+<h2>Создание акции</h2>
+
+<form asp-action="Create" enctype="multipart/form-data" asp-controller="Promotions" asp-antiforgery="true">
+    <div>
+        <div class="validation" asp-validation-summary="ModelOnly"></div>
+        <div>
+            <label asp-for="Header"></label><br />
+            <input asp-for="Header" />
+            <span asp-validation-for="Header" />
+        </div>
+        <div>
+            <label asp-for="Description"></label><br />
+            <input asp-for="Description" />
+            <span asp-validation-for="Description" />
+        </div>
+        <div>
+            <label asp-for="DtFrom"></label><br />
+            <input asp-for="DtFrom" />
+            <span asp-validation-for="DtFrom" />
+        </div>
+        <div>
+            <label asp-for="DtTo"></label><br />
+            <input asp-for="DtTo" />
+            <span asp-validation-for="DtTo" />
+        </div>
+        <div>
+            <label asp-for="Image"></label><br />
+            <input type="file" asp-for="Image" />
+            <span asp-validation-for="Image" />
+        </div>
+        <div>
+            <input class="btn btn-info" type="submit" value="Создать" />
+        </div>
+    </div>
+</form>

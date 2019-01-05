@@ -29,6 +29,7 @@ namespace gym_webapi_template
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<IPromotionService, PromotionService>();
+            services.AddScoped<IFileService, FileService>();
 
             services.AddCommonLibraryCollection();
             services.AddBusinessLibraryCollection();
@@ -59,6 +60,7 @@ namespace gym_webapi_template
             {
                 app.UseHsts();
             }
+            app.UseStaticFiles();
 
             app.UseSwagger();
             app.UseSwaggerUI(option =>
@@ -71,7 +73,8 @@ namespace gym_webapi_template
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Promotions}/{action=Index}/{id?}");
+                    template: "{controller}/{action}/{id?}",
+                    new { controller = "Promotions", action = "Index" });
             });
         }
     }

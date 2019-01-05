@@ -9,8 +9,7 @@ namespace WebApi.Controllers
     /// <summary>
     /// Контроллер для работы с акциями
     /// </summary>
-    // [Route("api/[controller]")]
-    // [ApiController]
+    [Route("[controller]")]
     public class PromotionsController : Controller
     {
         private readonly IPromotionService promotions;
@@ -24,7 +23,9 @@ namespace WebApi.Controllers
         /// <summary>
         /// Получает списо акций
         /// </summary>
-        [HttpGet("[controller]")]
+        [HttpGet]
+        [Route("")]
+        [Route("Index")]
         public async Task<IActionResult> IndexAsync()
         {
             return View("index",await this.promotions.GetActivePromotionsAsync());
@@ -34,23 +35,60 @@ namespace WebApi.Controllers
         /// <summary>
         /// Получает списо акций
         /// </summary>
-        [HttpGet("[controller]/{id:int}")]
+        [HttpGet("{id:int}")]
         public async Task<IActionResult> DetailsAsync(int id)
         {
             return View(await this.promotions.GetPromotionAsync(id));
         }
 
-        // POST api/promotions
         /// <summary>
-        /// Сохраняет новую акцию
+        /// Получает списо акций
         /// </summary>
-        [HttpPost]
-        public async Task<IActionResult> EditAsync([FromForm] PromotionInsert promotion)
+        [HttpGet("Edit/{id:int}")]
+        public async Task<IActionResult> EditAsync(int id)
         {
-            var id = await this.promotions.CreatePromotionAsync(promotion);
-            return RedirectToAction($"details/{id}");
+            return View(await this.promotions.GetPromotionAsync(id));
         }
 
+        /// <summary>
+        /// Редактирует акцию
+        /// </summary>
+        [HttpPost("Edit")]
+        public async Task<IActionResult> EditAsync([FromBody] PromotionUpsert promotion)
+        {
+            if (ModelState.IsValid)
+            {
+                var promotionId = await this.promotions.CreatePromotionAsync(promotion);
+                return RedirectToAction($"DetailsAsync", new { id = promotionId });
+            }                
+            else
+                return View(promotion);
+        }
+
+
+        /// <summary>
+        /// Получает списо акций
+        /// </summary>
+        [HttpGet("Create")]
+        public async Task<IActionResult> CreateAsync()
+        {
+            return View(new PromotionUpsert());
+        }
+
+        /// <summary>
+        /// Создает акцию и открывает детализацию
+        /// </summary>
+        [HttpPost("Create")]
+        public async Task<IActionResult> CreateAsync(PromotionUpsert promotion)
+        {
+            if (ModelState.IsValid)
+            {
+                var promotionId = await this.promotions.CreatePromotionAsync(promotion);
+                return RedirectToAction($"DetailsAsync", new { id = promotionId });
+            }                
+            else
+                return View(promotion);
+        }
 
     }
 }

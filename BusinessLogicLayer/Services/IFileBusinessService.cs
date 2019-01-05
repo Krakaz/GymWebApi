@@ -15,6 +15,11 @@ namespace BusinessLogicLayer.Services
         Task<string> SaveFileAsync(IFormFile file);
 
         /// <summary>
+        /// Сохраняет файл на диск и в БД
+        /// </summary>
+        Task<int> UploadFileAsync(IFormFile file);
+
+        /// <summary>
         /// Получает файл
         /// </summary>
         Task<MemoryStream> GetFileAsync(string fileName);

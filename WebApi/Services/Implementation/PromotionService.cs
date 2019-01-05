@@ -16,7 +16,7 @@ namespace WebApi.Services.Implementation
             this.promotionsBusiness = promotionsBusiness;
         }
 
-        public async Task<int> CreatePromotionAsync(PromotionInsert promotion)
+        public async Task<int> CreatePromotionAsync(PromotionUpsert promotion)
         {
             var basePromotion = promotion.Adapt<PromotionBase>();
             await this.promotionsBusiness.CreatePromotionAsync(basePromotion);

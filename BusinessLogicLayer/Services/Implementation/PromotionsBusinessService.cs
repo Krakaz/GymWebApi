@@ -40,6 +40,7 @@ namespace BusinessLogicLayer.Services.Implementation
             promotionDto.File = file;
             promotionDto.IsDeleted = false;
             await this.promotionServices.CreatePromotionAsync(promotionDto);
+            promotion.Id = promotionDto.Id;
         }
 
         public async Task<IList<PromotionListItem>> GetActivePromotionsAsync()

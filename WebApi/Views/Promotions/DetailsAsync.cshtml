@@ -1,54 +1,19 @@
 ﻿@model WebApi.Models.PromotionDetails
 
 @{
-    ViewData["Title"] = "DetailsAsync";
+    ViewData["Title"] = "Описание акции";
+    var dtStart = Model.DtFrom.ToString("dd.MM.yyyy");
+    var dtEnd = Model.DtTo?.ToString("dd.MM.yyyy") ?? "не ограничено";
 }
 
-<h2>DetailsAsync</h2>
 
 <div>
-    <h4>PromotionDetails</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Id)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Id)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Header)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Header)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.DtFrom)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.DtFrom)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.DtTo)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.DtTo)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Image)
-        </dt>
-        <dd>
-            <img src="data:image;base64,@System.Convert.ToBase64String(Model.Image)" width="400" height="400" />
-        </dd>
-    </dl>
-</div>
-<div>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    <a asp-action="Index">Back to List</a>
+    <div class="card mb-3">
+        <img class="card-img-top" src="data:image;base64,@System.Convert.ToBase64String(Model.Image)" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title"><h2>@Model.Header</h2></h5>
+            <p class="card-text">@Model.Description</p>
+            <p class="card-text"><small class="text-muted">Период действия с @dtStart по @dtEnd </small></p>
+        </div>
+    </div>
 </div>

@@ -1,7 +1,6 @@
 ﻿@model IEnumerable<WebApi.Models.Promotion>
 
 @{
-    Layout = "_Layout";
     ViewData["Title"] = "Список акций";
 }
 
@@ -42,11 +41,12 @@
                     @Html.DisplayFor(modelItem => item.ImageName)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
                     @Html.ActionLink("Details", "DetailsAsync", new { id = item.Id }) |
-                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
                 </td>
             </tr>
         }
     </tbody>
 </table>
+@Html.ActionLink("Create", "Create")
